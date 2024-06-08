@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/post-bg.jpg')}}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>
+                    <h2 class="subheading">{{post.content| truncate(50)}}</h2>
+                    <span class="meta">
+                        Posted by
+                        <a href="/">Tech Blogs</a>
+                        on {{post.date}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="container">
+    <form action="/edit-post/{{post.sno}}" method="post">
+    <div class="mb-3">
+        <label for="post-title" class="form-label">Post Title</label>
+        <input type="text" class="form-control" name="title" id="post-title" value="{{post.title}}">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">{{post.content}}</textarea>
+      </div>
+      <button class="btn btn-primary w-100">Update Post</button>
+    </form>
+</div>
+
+{% endblock body %}

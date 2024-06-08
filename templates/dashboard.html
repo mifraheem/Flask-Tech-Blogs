@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block body %}
+
+        <!-- Page Header-->
+
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/contact-bg.jpg') }}')">
+           
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Dashboard</h1>
+                            <span class="subheading">Welcome to Tech Blogs Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<p class="text-center"> <span class="btn btn-outline-success" role="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add New Blog</span> </p>
+<p class="text-center"> <a class="btn btn-outline-danger text-decoration-none" href="/logout">Logout</a> </p>
+
+
+<table class="table w-75 m-auto">
+    <thead>
+      <tr>
+        <th scope="col">SNO</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+        <tr>
+            <th scope="row">{{post.sno}}</th>
+            <td>{{post.title[0:40]}}</td>
+            <td>{{post.date}}</td>
+            <td> <a href="/edit-post/{{post.sno}}">Edit</a> </td>
+            <td> <a href="/delete-post/{{post.sno}}">Delete</a> </td>
+        </tr>
+        {% endfor %}
+ 
+        
+    </tbody>
+  </table>
+
+
+{% endblock body %}
